@@ -94,6 +94,7 @@ function solve() {
 
 function drawStep(index) {
     if (index >= points.length) {
+        buttonSolve.disabled = false;
         buttonReset.disabled = false;
         return;
     }
