@@ -47,3 +47,21 @@ button {
     border-radius: 6px;
     border: none;
 }
+.naslov{
+    
+    height: 10%;
+    width:20%;
+    margin-left:40%;
+    font-size: 200%;
+    color:white;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    
+    font-family: "MojaPisava", sans-serif;
+}
+@font-face {
+    font-family: 'MojaPisava';
+    src: url('AmongUs-Regular.ttf') format('truetype');
+    
+}

@@ -108,6 +108,74 @@ function drawStep(index) {
     }, DELAY);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+const icon = new Image();
+icon.src = "ikona.svg";
+
+function solve() {
+    buttonSolve.disabled = true;
+    buttonReset.disabled = true;
+    moveIcon(0);
+}
+
+
+function moveIcon(index) {
+    if (index >= points.length) {
+        buttonSolve.disabled = false;
+        buttonReset.disabled = false;
+        return;
+    }
+    
+    const [x, y] = points[index];
+    
+    
+    redrawPath(index); 
+ 
+
+    ctx.drawImage(icon, x - icon.width / 6, y - icon.height / 6, icon.width / 3, icon.height / 3);
+    
+    setTimeout(function() {
+        moveIcon(index + 2);
+    }, DELAY);
+}
+
+function redrawPath(index) {
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "#e35bc5";
+    ctx.lineJoin = "round";
+    
+    ctx.moveTo(points[0][0], points[0][1]);
+    for (let i = 1; i <= index; i++) {
+        ctx.lineTo(points[i][0], points[i][1]);
+    }
+    ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // maze
 function draw() {
     ctx.lineWidth = 2;
