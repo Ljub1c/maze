@@ -13,6 +13,7 @@ buttonSolve.onclick = function() {
 buttonReset.onclick = reset;
 
 const DELAY = 50;
+const DELAY1 = 100;
 
 tsParticles.load("particles", {
     "particles": {
@@ -73,7 +74,7 @@ const points = [
     [234,378], [314,378], [314,394], [330,394], [330,378], [362,378], [362,410], [330,410], [330,426],
     [314,426], [314,410], [298,410], [298,394], [282,394], [282,426], [298,426], [298,442], [330,442],
     [330,458], [314,458], [314,474], [266,474], [266,458], [250,458], [250,482]
-]
+];
 
 function reset() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -82,6 +83,25 @@ function reset() {
 }
 
 function solve() {
+    drawObject(points[0][0], points[0][1]);  // Nariši moder kvadratek na začetni točki
+    moveObject(1);  // Premakni kvadratek po točkah
+}
+
+function moveObject(index) {
+    if (index >= points.length) {
+        drawLine();  // Ko kvadratek pride do konca, nariši črto
+        return;
+    }
+
+    const [x, y] = points[index];
+    drawObject(x, y);  // Posodobi pozicijo modrega kvadratka
+
+    setTimeout(function() {
+        moveObject(index + 1);
+    }, DELAY);
+}
+
+function drawLine() {
     ctx.beginPath();
 
     ctx.lineWidth = 5;
@@ -105,75 +125,16 @@ function drawStep(index) {
 
     setTimeout(function() {
         drawStep(index + 1);
-    }, DELAY);
+    }, DELAY1);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-const icon = new Image();
-icon.src = "ikona.svg";
-
-function solve() {
-    buttonSolve.disabled = true;
-    buttonReset.disabled = true;
-    moveIcon(0);
+// Posodobljena funkcija za modri kvadratek
+function drawObject(x, y) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // Počisti prejšnji kvadratek
+    draw();  // Znova nariši statične elemente
+    ctx.fillStyle = "blue";
+    ctx.fillRect(x - 5, y - 5, 10, 10);  // Prilagodite velikost kvadratka po potrebi
 }
-
-
-function moveIcon(index) {
-    if (index >= points.length) {
-        buttonSolve.disabled = false;
-        buttonReset.disabled = false;
-        return;
-    }
-    
-    const [x, y] = points[index];
-    
-    
-    redrawPath(index); 
- 
-
-    ctx.drawImage(icon, x - icon.width / 6, y - icon.height / 6, icon.width / 3, icon.height / 3);
-    
-    setTimeout(function() {
-        moveIcon(index + 2);
-    }, DELAY);
-}
-
-function redrawPath(index) {
-    ctx.beginPath();
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = "#e35bc5";
-    ctx.lineJoin = "round";
-    
-    ctx.moveTo(points[0][0], points[0][1]);
-    for (let i = 1; i <= index; i++) {
-        ctx.lineTo(points[i][0], points[i][1]);
-    }
-    ctx.stroke();
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // maze
