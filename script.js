@@ -127,13 +127,15 @@ function drawStep(index) {
         drawStep(index + 1);
     }, DELAY1);
 }
-
 // Posodobljena funkcija za modri kvadratek
+let img = new Image();
 function drawObject(x, y) {
+    img.src = "./zvezdica.svg"
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // Počisti prejšnji kvadratek
     draw();  // Znova nariši statične elemente
     ctx.fillStyle = "blue";
-    ctx.fillRect(x - 5, y - 5, 10, 10);  // Prilagodite velikost kvadratka po potrebi
+    ctx.drawImage(img, x-5, y-5, 10, 10);
+    //ctx.fillRect(x - 5, y - 5, 10, 10);  // Prilagodite velikost kvadratka po potrebi
 }
 
 
