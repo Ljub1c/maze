@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const DELAY = 300;
+const DELAY = 250;
 const DELAY1 = 100;
 
 tsParticles.load("particles", {
