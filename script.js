@@ -12,7 +12,25 @@ buttonSolve.onclick = function() {
 
 buttonReset.onclick = reset;
 
-const DELAY = 50;
+document.addEventListener("DOMContentLoaded", () => {
+    const naslovElement = document.querySelector(".naslov");
+    
+    if (naslovElement) {
+        naslovElement.addEventListener("click", () => {
+            Swal.fire({
+                title: 'Informations',
+                text: 'Author: Nik Ljubič, 4. RA',
+				 iconColor: "black",
+				 confirmButtonColor: "black",
+                icon: 'info',
+                confirmButtonText: 'Close'
+            });
+        });
+    }
+});
+
+
+const DELAY = 300;
 const DELAY1 = 100;
 
 tsParticles.load("particles", {
@@ -83,18 +101,18 @@ function reset() {
 }
 
 function solve() {
-    drawObject(points[0][0], points[0][1]);  // Nariši moder kvadratek na začetni točki
-    moveObject(1);  // Premakni kvadratek po točkah
+    drawObject(points[0][0], points[0][1]); 
+    moveObject(1);  
 }
 
 function moveObject(index) {
     if (index >= points.length) {
-        drawLine();  // Ko kvadratek pride do konca, nariši črto
+        drawLine();  
         return;
     }
 
     const [x, y] = points[index];
-    drawObject(x, y);  // Posodobi pozicijo modrega kvadratka
+    drawObject(x, y);  
 
     setTimeout(function() {
         moveObject(index + 1);
@@ -105,7 +123,7 @@ function drawLine() {
     ctx.beginPath();
 
     ctx.lineWidth = 5;
-    ctx.strokeStyle = "#e35bc5";
+    ctx.strokeStyle = "c8bec6";
     ctx.lineJoin = "round";
 
     ctx.moveTo(points[0][0], points[0][1]);

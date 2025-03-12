@@ -52,7 +52,7 @@ button {
     cursor: pointer;
 }
 button:hover{
-    box-shadow: 0px 0px 15px 1px rgb(59, 59, 59);
+    box-shadow: 0px 0px 15px 10px rgb(59, 59, 59);
 }
 .naslov{
     
@@ -64,11 +64,16 @@ button:hover{
     display: flex;
     justify-content: center; 
     align-items: center;
+	cursor: pointer;
     
     font-family: "MojaPisava", sans-serif;
 }
+
 @font-face {
     font-family: 'MojaPisava';
     src: url('AmongUs-Regular.ttf') format('truetype');
     
+}
+.swal2-container.swal2-center>.swal2-popup {
+    outline-color: #FFF8E1;
 }
